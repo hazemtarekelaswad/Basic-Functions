@@ -123,6 +123,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\BasicFunctions.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\BasicFunctions.cpp" />
+    <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
