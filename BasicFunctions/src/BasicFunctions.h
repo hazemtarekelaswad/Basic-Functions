@@ -25,9 +25,6 @@ bool descending(int x, int y);
 void BubbleSort(int* arr, int length, bool(*order)(int, int));	/*	you can choose to sort in ascending order or descending order 
 																	by passing "ascending" or "descending" as a third parameter	*/
 void Reverse(int* arr, int length);
-int* RemoveDuplicates(int* arr, int lengthIn, int &lengthOut);
-
-
-
-
-
+int* Merge(int* arr1, int length1, int* arr2, int length2, int &lengthOut);
+int* RemoveDuplicates(int* arr, int lengthIn, int &lengthOut); /*	two options are provided, to sort the array then remove the duplicated elements
+																	 or to remove duplicates directly */

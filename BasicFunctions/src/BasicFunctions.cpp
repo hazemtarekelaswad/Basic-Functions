@@ -2,7 +2,6 @@
 #include <iostream>
 #include "BasicFunctions.h"
 using namespace std;
-//#define SORT_AND_REMOVEDUP
 
 
 // Basic Functions
@@ -102,6 +101,7 @@ void Reverse(int* arr, int length){
 	}
 }
 
+//#define SORT_AND_REMOVEDUP
 int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut){
 
 	lengthOut = 0;
@@ -160,6 +160,21 @@ int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut){
 	return arrOut;
 
 #endif // SORT_AND_REMOVEDUP
+}
+
+int* Merge(int* arr1, int length1, int* arr2, int length2, int &lengthOut) {
+
+	lengthOut = length1 + length2;
+	int* arrOut = new int[lengthOut];
+
+	for (int i = 0; i < length1; ++i)
+		arrOut[i] = arr1[i];
+
+	int j = 0;
+	for (int i = length1; i < lengthOut; ++i)
+		arrOut[i] = arr2[j++];
+
+	return arrOut;
 }
 
 
