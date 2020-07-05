@@ -3,14 +3,17 @@
 using namespace std;
 
 int main() {
-	int length = 6;
+	int length = 7;
 	int* arr = new int[length];
 
 	ReadArray(arr, length);
-	BubbleSort(arr, length, ascending);
-	PrintArray(arr, length);
 
-	BubbleSort(arr, length, descending);
-	PrintArray(arr, length);
+	int lengthB = 0;
+	int * res = RemoveDuplicates(arr, length, lengthB);
+
+	PrintArray(res, lengthB);
+
+	delete[] res;
+	delete[] arr;
 	return 0;
 }
