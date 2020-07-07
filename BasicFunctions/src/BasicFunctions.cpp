@@ -19,10 +19,10 @@ bool IsPrime(int number) {
 
 	if (number == 1)
 		return false;
-	
+
 	if (number == 2)
 		return true;
-	
+
 	for (int i = 2; i < number; ++i) {
 		if (!(number % i))
 			return false;
@@ -30,10 +30,38 @@ bool IsPrime(int number) {
 	return true;
 }
 
-int CompareDoubles(double x, double y){
+int CompareDoubles(double x, double y) {
 	if (fabs(x - y) <= 1e-10)
 		return 0;
 	return(x > y ? 1 : -1);
+}
+
+void Upper(string &str) {
+	for (int i = 0; i < str.length(); ++i) {
+		if (str[i] >= 'a' && str[i] <= 'z')
+			str[i] -= 32;
+	}
+}
+
+void Lower(string &str) {
+	for (int i = 0; i < str.length(); ++i) {
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] += 32;
+	}
+}
+
+void Capitalize(string &str) {
+	if (str[0] >= 'a' && str[0] <= 'z')
+		str[0] -= 32;
+
+	if (str.length() == 1)
+		return;
+
+	for (int i = 1; i < str.length(); ++i) {
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] += 32;
+	}
+
 }
 
 // String Basic Manipulation
@@ -85,7 +113,7 @@ bool descending(int x, int y) {
 	return x > y;
 }
 
-void BubbleSort(int* arr, int length, bool(*order)(int , int)) {
+void BubbleSort(int* arr, int length, bool(*order)(int, int)) {
 	for (int i = 0; i < length - 1; ++i) {
 		for (int j = i + 1; j < length; ++j) {
 			if (order(arr[j], arr[i]))
@@ -94,15 +122,30 @@ void BubbleSort(int* arr, int length, bool(*order)(int , int)) {
 	}
 }
 
-void Reverse(int* arr, int length){
+void Reverse(int* arr, int length) {
 	for (int i = 0; i < length / 2; ++i) {
-		if(arr[i] != arr[length - 1 - i])
+		if (arr[i] != arr[length - 1 - i])
 			Swap(arr[i], arr[length - 1 - i]);
 	}
 }
 
+int* Merge(int* arr1, int length1, int* arr2, int length2, int &lengthOut) {
+
+	lengthOut = length1 + length2;
+	int* arrOut = new int[lengthOut];
+
+	for (int i = 0; i < length1; ++i)
+		arrOut[i] = arr1[i];
+
+	int j = 0;
+	for (int i = length1; i < lengthOut; ++i)
+		arrOut[i] = arr2[j++];
+
+	return arrOut;
+}
+
 //#define SORT_AND_REMOVEDUP
-int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut){
+int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut) {
 
 	lengthOut = 0;
 
@@ -126,7 +169,7 @@ int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut){
 	arrOut[lengthOut - 1] = arrIn[lengthIn - 1];
 
 	return arrOut;
-	
+
 #else
 
 	for (int i = 0; i < lengthIn - 1; ++i) {
@@ -162,20 +205,6 @@ int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut){
 #endif // SORT_AND_REMOVEDUP
 }
 
-int* Merge(int* arr1, int length1, int* arr2, int length2, int &lengthOut) {
-
-	lengthOut = length1 + length2;
-	int* arrOut = new int[lengthOut];
-
-	for (int i = 0; i < length1; ++i)
-		arrOut[i] = arr1[i];
-
-	int j = 0;
-	for (int i = length1; i < lengthOut; ++i)
-		arrOut[i] = arr2[j++];
-
-	return arrOut;
-}
 
 
 

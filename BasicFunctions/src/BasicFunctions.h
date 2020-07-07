@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 // Basic Functions
 
 void Swap(int& x, int& y);
@@ -10,6 +12,9 @@ bool IsPrime(int number);
 int CompareDoubles(double x, double y);	// returns "1" if x > y, "0" if x = y, "-1" if x < y
 
 // String Basic Manipulation Functions
+void Upper(std::string &str);
+void Lower(std::string &str);
+void Capitalize(std::string &str);
 
 
 // Arrays Manipulation Functions
