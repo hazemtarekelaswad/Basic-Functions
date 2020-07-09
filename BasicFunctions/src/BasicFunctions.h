@@ -2,25 +2,30 @@
 
 #include <string>
 
-// Basic Functions
+// ========================= Basic Functions ========================= 
 
-void Swap(int& x, int& y);
+inline void Swap(int& x, int& y);
+inline void Swap(std::string& x, std::string& y);
 
-// Mathematics
+// ========================= Mathematics ========================= 
 
 bool IsPrime(int number);
 int CompareDoubles(double x, double y);	// returns "1" if x > y, "0" if x = y, "-1" if x < y
 
-// String Basic Manipulation Functions
+// ========================= String Manipulation Functions ========================= 
+
 void Upper(std::string &str);
 void Lower(std::string &str);
 void Capitalize(std::string &str);
+void Alphabetize(std::string *str, int length);	//	modifies each word to lower case letters, then alphabetizes the array
 
 
-// Arrays Manipulation Functions
+// ========================= Array Manipulation Functions ========================= 
 
 void ReadArray(int* arr, int length);
+void ReadArray(std::string* arr, int length);
 void PrintArray(int* arr, int length);
+void PrintArray(std::string* arr, int length);
 
 int MaxElement(int* arr, int length);
 int MinElement(int* arr, int length);

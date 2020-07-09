@@ -12,6 +12,12 @@ void Swap(int& x, int& y) {
 	y = temp;
 }
 
+void Swap(string& x, string& y) {
+	string temp = x;
+	x = y;
+	y = temp;
+}
+
 
 // Mathematics
 
@@ -35,6 +41,9 @@ int CompareDoubles(double x, double y) {
 		return 0;
 	return(x > y ? 1 : -1);
 }
+
+
+// String Basic Manipulation
 
 void Upper(string &str) {
 	for (int i = 0; i < str.length(); ++i) {
@@ -64,7 +73,29 @@ void Capitalize(string &str) {
 
 }
 
-// String Basic Manipulation
+void Alphabetize(string* str, int length) {
+
+	for (int i = 0; i < length - 1; ++i) {
+		Lower(str[i]);
+		for (int j = i + 1; j < length; ++j) {
+			if (j == length - 1)
+				Lower(str[j]);
+
+			for (int k = 0; k < str[str[i].length() < str[j].length() ? i : j].length(); ++k) {
+				if (str[j][k] < str[i][k]) {
+					Swap(str[i], str[j]);
+					break;
+				}
+				if (str[j][k] > str[i][k])
+					break;
+				
+				if(str[j].length() < str[i].length())
+					Swap(str[i], str[j]);
+			}
+		}
+	}
+}
+
 
 
  // Arrays Manipulation
@@ -74,11 +105,23 @@ void ReadArray(int* arr, int length) {
 		cin >> arr[i];
 }
 
+void ReadArray(string* arr, int length) {
+	for (int i = 0; i < length; ++i)
+		cin >> arr[i];
+}
+
 void PrintArray(int* arr, int length) {
 	for (int i = 0; i < length; ++i)
 		cout << arr[i] << ' ';
 	cout << endl;
 }
+
+void PrintArray(string* arr, int length) {
+	for (int i = 0; i < length; ++i)
+		cout << arr[i] << endl;
+	cout << endl;
+}
+
 
 int MaxElement(int* arr, int length) {
 	if (length == 1)

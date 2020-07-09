@@ -4,16 +4,11 @@
 using namespace std;
 
 int main() {
-	string str;
-	cin >> str;
-
-	Capitalize(str);
-	cout << str << endl;
-
-	Lower(str);
-	cout << str << endl;
-
-	Upper(str);
-	cout << str << endl;
+	string str[5];
+	ReadArray(str, 5);
+	Alphabetize(str, 5);
+	cout << endl;
+	PrintArray(str, 5);
+	
 	return 0;
 }
