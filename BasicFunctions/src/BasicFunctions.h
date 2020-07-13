@@ -4,13 +4,14 @@
 
 // ========================= Basic Functions ========================= 
 
-inline void Swap(int& x, int& y);
-inline void Swap(std::string& x, std::string& y);
+void Swap(int& x, int& y);
+void Swap(std::string& x, std::string& y);
 
 // ========================= Mathematics ========================= 
 
 bool IsPrime(int number);
 int CompareDoubles(double x, double y);	// returns "1" if x > y, "0" if x = y, "-1" if x < y
+long long Factorial(int number);
 
 // ========================= String Manipulation Functions ========================= 
 
@@ -29,6 +30,9 @@ void PrintArray(std::string* arr, int length);
 
 int MaxElement(int* arr, int length);
 int MinElement(int* arr, int length);
+
+long long Sum(int* arr, int n);
+long long Multiply(int* arr, int n);
 
 bool ascending(int x, int y);
 bool descending(int x, int y);

@@ -4,11 +4,8 @@
 using namespace std;
 
 int main() {
-	string str[5];
-	ReadArray(str, 5);
-	Alphabetize(str, 5);
-	cout << endl;
-	PrintArray(str, 5);
 	
+	cout << Factorial(15) << endl;
+
 	return 0;
 }

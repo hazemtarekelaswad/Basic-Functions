@@ -42,6 +42,14 @@ int CompareDoubles(double x, double y) {
 	return(x > y ? 1 : -1);
 }
 
+long long Factorial(int number) {
+	long long result = 1;
+	while (number) {
+		result *= number--;
+	}
+	return result;
+}
+
 
 // String Basic Manipulation
 
@@ -145,6 +153,20 @@ int MinElement(int* arr, int length) {
 			min = arr[i];
 	}
 	return min;
+}
+
+long long Sum(int* arr, int n) {
+	long long sum = 0;
+	for (int i = 0; i < n; ++i)
+		sum += arr[i];
+	return sum;
+}
+
+long long Multiply(int* arr, int n) {
+	long long prod = 1;
+	for (int i = 0; i < n; ++i)
+		prod *= arr[i];
+	return prod;
 }
 
 
