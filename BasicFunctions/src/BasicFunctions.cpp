@@ -1,10 +1,11 @@
 #include <cmath>
 #include <iostream>
+#include <algorithm>
 #include "BasicFunctions.h"
 using namespace std;
 
 
-// Basic Functions
+// ========================= Basic Functions ========================= 
 
 void Swap(int& x, int& y) {
 	int temp = x;
@@ -19,7 +20,7 @@ void Swap(string& x, string& y) {
 }
 
 
-// Mathematics
+// ========================= Mathematics ========================= 
 
 bool IsPrime(int number) {
 
@@ -43,15 +44,31 @@ int CompareDoubles(double x, double y) {
 }
 
 long long Factorial(int number) {
-	long long result = 1;
-	while (number) {
-		result *= number--;
-	}
-	return result;
+	if (!number)
+		return 1;
+	return number * Factorial(number - 1);
+}
+
+long long ConsecutiveSum(int num) {
+	return (num + 1) * (num / 2) + (num % 2) * (1 + static_cast<double>(num) / 2);
+}
+
+long long Fibonacci(int num) {
+	return static_cast<long long>(1.0 / sqrt(5.0) * (pow(1.0 / 2.0 + sqrt(5.0) / 2.0, num) - pow(1.0 / 2.0 - sqrt(5.0) / 2.0, num)));
+}
+
+long long GCD(long long x, long long y) {
+	//long long max = (x > y) ? x : y;
+	//long long min = (x < y) ? x : y;
+	long long max = (x > y) * x + (x <= y) * y;
+	long long min = (x < y) * x + (x >= y) * y;
+	if (!min)
+		return max;
+	GCD(min, max % min);
 }
 
 
-// String Basic Manipulation
+// ========================= String Manipulation Functions =========================
 
 void Upper(string &str) {
 	for (int i = 0; i < str.length(); ++i) {
@@ -104,9 +121,12 @@ void Alphabetize(string* str, int length) {
 	}
 }
 
+bool IsLower(char letter) {
+	return (letter >= 'a' && letter <= 'z');
+}
 
 
- // Arrays Manipulation
+// ========================= Array Manipulation Functions ========================= 
 
 void ReadArray(int* arr, int length) {
 	for (int i = 0; i < length; ++i)
@@ -143,6 +163,20 @@ int MaxElement(int* arr, int length) {
 	return max;
 }
 
+int MaxElement(int* arr, int first, int last) {
+	if (first == last)
+		return arr[first];
+
+	int mid = first + (last - first) / 2;
+
+	int leftMax = MaxElement(arr, first, mid);
+	int rightMax = MaxElement(arr, mid + 1, last);
+	
+	return leftMax > rightMax ? leftMax : rightMax;
+
+//	return max(MaxElement(arr, first, mid), MaxElement(arr, mid + 1, last));
+}
+
 int MinElement(int* arr, int length) {
 	if (length == 1)
 		return arr[0];
@@ -155,7 +189,7 @@ int MinElement(int* arr, int length) {
 	return min;
 }
 
-long long Sum(int* arr, int n) {
+long long SumArray(int* arr, int n) {
 	long long sum = 0;
 	for (int i = 0; i < n; ++i)
 		sum += arr[i];
@@ -167,24 +201,6 @@ long long Multiply(int* arr, int n) {
 	for (int i = 0; i < n; ++i)
 		prod *= arr[i];
 	return prod;
-}
-
-
-bool ascending(int x, int y) {
-	return x < y;
-}
-
-bool descending(int x, int y) {
-	return x > y;
-}
-
-void BubbleSort(int* arr, int length, bool(*order)(int, int)) {
-	for (int i = 0; i < length - 1; ++i) {
-		for (int j = i + 1; j < length; ++j) {
-			if (order(arr[j], arr[i]))
-				Swap(arr[i], arr[j]);
-		}
-	}
 }
 
 void Reverse(int* arr, int length) {
@@ -271,5 +287,54 @@ int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut) {
 }
 
 
+// ========================= Common Algorithms ========================= 
 
+int BinarySearch(int* arr, int first, int last, int target) {
+	if (first > last)
+		return -1;
 
+	//int mid = (last + first) / 2;
+	int mid = first + (last - first) / 2;	// Better calculation of mid in order to prevent any overflow to occur
+
+	if (arr[mid] == target)
+		return mid;
+
+	if (target < arr[mid])
+		BinarySearch(arr, first, mid - 1, target);
+	else
+		BinarySearch(arr, mid + 1, last, target);
+}
+
+bool ascending(int x, int y) {
+	return x < y;
+}
+
+bool descending(int x, int y) {
+	return x > y;
+}
+
+void BubbleSort(int* arr, int length, bool(*order)(int, int)) {
+	if (length == 1)
+		return;
+
+	for (int i = 0; i < length - 1; ++i) {
+		for (int j = i + 1; j < length; ++j) {
+			if (order(arr[j], arr[i]))
+				Swap(arr[i], arr[j]);
+		}
+	}
+}
+
+void InsertionSort(int* arr, int length, bool(*order)(int, int)) {
+	if (length == 1)
+		return;
+
+	for (int i = 1; i < length; ++i) {
+		int k = i;
+		for (int j = i - 1; j >= 0; --j) {
+			if (order(arr[j], arr[i]))
+				break;
+			Swap(arr[k--], arr[j]);
+		}
+	}
+}
