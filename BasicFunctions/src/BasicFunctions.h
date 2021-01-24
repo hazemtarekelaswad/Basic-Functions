@@ -54,3 +54,6 @@ void SelectionSort(int* arr, int length, bool(*order)(int, int));
 void BubbleSort(int* arr, int length, bool(*order)(int, int));	/*	you can choose to sort in ascending order or descending order
 																	by passing "ascending" or "descending" as a third parameter	*/
 void InsertionSort(int* arr, int length, bool(*order)(int, int));
+
+void Merge(int* arr, int first, int mid, int last, bool(*order)(int, int));
+void MergeSort(int* arr, int first, int last, bool(*order)(int, int));

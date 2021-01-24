@@ -70,21 +70,21 @@ long long GCD(long long x, long long y) {
 
 // ========================= String Manipulation Functions =========================
 
-void Upper(string &str) {
+void Upper(string& str) {
 	for (int i = 0; i < str.length(); ++i) {
 		if (str[i] >= 'a' && str[i] <= 'z')
 			str[i] -= 32;
 	}
 }
 
-void Lower(string &str) {
+void Lower(string& str) {
 	for (int i = 0; i < str.length(); ++i) {
 		if (str[i] >= 'A' && str[i] <= 'Z')
 			str[i] += 32;
 	}
 }
 
-void Capitalize(string &str) {
+void Capitalize(string& str) {
 	if (str[0] >= 'a' && str[0] <= 'z')
 		str[0] -= 32;
 
@@ -113,8 +113,8 @@ void Alphabetize(string* str, int length) {
 				}
 				if (str[j][k] > str[i][k])
 					break;
-				
-				if(str[j].length() < str[i].length())
+
+				if (str[j].length() < str[i].length())
 					Swap(str[i], str[j]);
 			}
 		}
@@ -171,10 +171,10 @@ int MaxElement(int* arr, int first, int last) {
 
 	int leftMax = MaxElement(arr, first, mid);
 	int rightMax = MaxElement(arr, mid + 1, last);
-	
+
 	return leftMax > rightMax ? leftMax : rightMax;
 
-//	return max(MaxElement(arr, first, mid), MaxElement(arr, mid + 1, last));
+	//	return max(MaxElement(arr, first, mid), MaxElement(arr, mid + 1, last));
 }
 
 int MinElement(int* arr, int length) {
@@ -210,7 +210,7 @@ void Reverse(int* arr, int length) {
 	}
 }
 
-int* Merge(int* arr1, int length1, int* arr2, int length2, int &lengthOut) {
+int* Merge(int* arr1, int length1, int* arr2, int length2, int& lengthOut) {
 
 	lengthOut = length1 + length2;
 	int* arrOut = new int[lengthOut];
@@ -226,7 +226,7 @@ int* Merge(int* arr1, int length1, int* arr2, int length2, int &lengthOut) {
 }
 
 //#define SORT_AND_REMOVEDUP
-int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut) {
+int* RemoveDuplicates(int* arrIn, int lengthIn, int& lengthOut) {
 
 	lengthOut = 0;
 
@@ -240,7 +240,7 @@ int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut) {
 	}
 	++lengthOut;
 
-	int *arrOut = new int[lengthOut];
+	int* arrOut = new int[lengthOut];
 
 	int j = 0;
 	for (int i = 0; i < lengthIn - 1; ++i) {
@@ -266,7 +266,7 @@ int* RemoveDuplicates(int* arrIn, int lengthIn, int &lengthOut) {
 	}
 	++lengthOut;
 
-	int *arrOut = new int[lengthOut];
+	int* arrOut = new int[lengthOut];
 
 	int k = 0;
 	for (int i = 0; i < lengthIn - 1; ++i) {
@@ -349,4 +349,46 @@ void InsertionSort(int* arr, int length, bool(*order)(int, int)) {
 		}
 		arr[j + 1] = key;
 	}
+}
+
+void Merge(int* arr, int first, int mid, int last, bool(*order)(int, int)) {
+	int leftSize = mid - first + 1;
+	int* leftArr = new int[leftSize];
+
+	int rightSize = last - mid;				// last - (mid + 1) + 1
+	int* rightArr = new int[rightSize];
+
+	for (int i = 0; i < leftSize; ++i)
+		leftArr[i] = arr[first + i];
+	for (int i = 0; i < rightSize; ++i)
+		rightArr[i] = arr[mid + 1 + i];
+
+	int leftIndex = 0;
+	int rightIndex = 0;
+
+	int i = first;
+	while (leftIndex < leftSize && rightIndex < rightSize) {
+		if (order(leftArr[leftIndex], rightArr[rightIndex]))
+			arr[i++] = leftArr[leftIndex++];
+		else
+			arr[i++] = rightArr[rightIndex++];
+	}
+
+	while (leftIndex < leftSize)
+		arr[i++] = leftArr[leftIndex++];
+
+	while (rightIndex < rightSize)
+		arr[i++] = rightArr[rightIndex++];
+
+	delete[] leftArr;
+	delete[] rightArr;
+}
+
+void MergeSort(int* arr, int first, int last, bool(*order)(int, int)) {
+	if (first == last)
+		return;
+	int mid = first + (last - first) / 2;
+	MergeSort(arr, first, mid, order);
+	MergeSort(arr, mid + 1, last, order);
+	Merge(arr, first, mid, last, order);
 }
