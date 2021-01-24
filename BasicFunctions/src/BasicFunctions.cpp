@@ -313,8 +313,22 @@ bool descending(int x, int y) {
 	return x > y;
 }
 
+void SelectionSort(int* arr, int length, bool(*order)(int, int)) {
+	if (length == 1 || length == 0)
+		return;
+
+	for (int i = 0; i < length; ++i) {
+		int Extremei = i;
+		for (int j = i + 1; j < length; ++j) {
+			if (order(arr[j], arr[Extremei]))
+				Extremei = j;
+		}
+		Swap(arr[i], arr[Extremei]);
+	}
+}
+
 void BubbleSort(int* arr, int length, bool(*order)(int, int)) {
-	if (length == 1)
+	if (length == 1 || length == 0)
 		return;
 
 	for (int i = 0; i < length - 1; ++i) {
@@ -326,7 +340,7 @@ void BubbleSort(int* arr, int length, bool(*order)(int, int)) {
 }
 
 void InsertionSort(int* arr, int length, bool(*order)(int, int)) {
-	if (length == 1)
+	if (length == 1 || length == 0)
 		return;
 
 	for (int i = 1; i < length; ++i) {

@@ -41,15 +41,16 @@ long long Multiply(int* arr, int n);
 
 void Reverse(int* arr, int length);
 int* Merge(int* arr1, int length1, int* arr2, int length2, int &lengthOut);
-int* RemoveDuplicates(int* arr, int lengthIn, int &lengthOut); /*	two options are provided, to sort the array then remove the duplicated elements
-																	 or to remove duplicates directly */
+int* RemoveDuplicates(int* arr, int lengthIn, int &lengthOut); // two options are provided, to sort the array then remove the duplicated elements or to remove duplicates directly
 
 
 // ========================= Common Algorithms ========================= 
 
 int BinarySearch(int* arr, int first, int last, int target);
+
 bool ascending(int x, int y);
 bool descending(int x, int y);
+void SelectionSort(int* arr, int length, bool(*order)(int, int));
 void BubbleSort(int* arr, int length, bool(*order)(int, int));	/*	you can choose to sort in ascending order or descending order
 																	by passing "ascending" or "descending" as a third parameter	*/
 void InsertionSort(int* arr, int length, bool(*order)(int, int));
