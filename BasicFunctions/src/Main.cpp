@@ -8,10 +8,10 @@ using namespace std;
 
 int main() {
 
-	int arr[] = {2, 0, 1, 3, 1, 4, 5 };
+	int arr[] = {2, 0, 1, 3, 1, 5, 4 };
 	PrintArray(arr, 7);
 	//InsertionSort(arr, 6, ascending);
-	SelectionSort(arr, 7, descending);
+	BubbleSort(arr, 7, descending);
 	PrintArray(arr, 7);
 	
 	

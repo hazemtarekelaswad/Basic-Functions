@@ -317,12 +317,11 @@ void SelectionSort(int* arr, int length, bool(*order)(int, int)) {
 	if (length == 1 || length == 0)
 		return;
 
-	for (int i = 0; i < length; ++i) {
+	for (int i = 0; i < length - 1; ++i) {
 		int Extremei = i;
-		for (int j = i + 1; j < length; ++j) {
+		for (int j = i + 1; j < length; ++j)
 			if (order(arr[j], arr[Extremei]))
 				Extremei = j;
-		}
 		Swap(arr[i], arr[Extremei]);
 	}
 }
@@ -331,12 +330,10 @@ void BubbleSort(int* arr, int length, bool(*order)(int, int)) {
 	if (length == 1 || length == 0)
 		return;
 
-	for (int i = 0; i < length - 1; ++i) {
-		for (int j = i + 1; j < length; ++j) {
-			if (order(arr[j], arr[i]))
-				Swap(arr[i], arr[j]);
-		}
-	}
+	for (int i = 0; i < length - 1; ++i)
+		for (int j = 0; j < length - i - 1; ++j)
+			if (order(arr[j + 1], arr[j]))
+				Swap(arr[j + 1], arr[j]);
 }
 
 void InsertionSort(int* arr, int length, bool(*order)(int, int)) {
