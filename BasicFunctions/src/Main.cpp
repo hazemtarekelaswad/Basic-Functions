@@ -11,7 +11,7 @@ int main() {
 	int arr[] = {2, 0, 1, 3, 1, 5, 4 };
 	PrintArray(arr, 7);
 	//InsertionSort(arr, 6, ascending);
-	BubbleSort(arr, 7, descending);
+	InsertionSort(arr, 7, descending);
 	PrintArray(arr, 7);
 	
 	

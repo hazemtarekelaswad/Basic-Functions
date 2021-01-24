@@ -341,11 +341,12 @@ void InsertionSort(int* arr, int length, bool(*order)(int, int)) {
 		return;
 
 	for (int i = 1; i < length; ++i) {
-		int k = i;
-		for (int j = i - 1; j >= 0; --j) {
-			if (order(arr[j], arr[i]))
-				break;
-			Swap(arr[k--], arr[j]);
+		int key = arr[i];
+		int j = i - 1;
+		while (j >= 0 && order(key, arr[j])) {
+			arr[j + 1] = arr[j];
+			--j;
 		}
+		arr[j + 1] = key;
 	}
 }
