@@ -287,7 +287,7 @@ int* RemoveDuplicates(int* arrIn, int lengthIn, int& lengthOut) {
 }
 
 
-// ========================= Common Algorithms ========================= 
+// ========================= Sorting and Searching Algorithms ========================= 
 
 int BinarySearch(int* arr, int first, int last, int target) {
 	if (first > last)
@@ -351,6 +351,23 @@ void InsertionSort(int* arr, int length, bool(*order)(int, int)) {
 	}
 }
 
+void ShellSort(int* arr, int length, bool(*order)(int, int)) {
+	if (length == 1 || length == 0)
+		return;
+
+	for (int gap = length / 2; gap > 0; gap /= 2) {
+		for (int i = gap; i < length; ++i) {
+			int key = arr[i];
+			int j = i - gap;
+			while (j >= 0 && order(key, arr[j])) {
+				arr[j + gap] = arr[j];
+				j -= gap;
+			}
+			arr[j + gap] = key;
+		}
+	}
+}
+
 void Merge(int* arr, int first, int mid, int last, bool(*order)(int, int)) {
 	int leftSize = mid - first + 1;
 	int* leftArr = new int[leftSize];
@@ -391,4 +408,54 @@ void MergeSort(int* arr, int first, int last, bool(*order)(int, int)) {
 	MergeSort(arr, first, mid, order);
 	MergeSort(arr, mid + 1, last, order);
 	Merge(arr, first, mid, last, order);
+}
+
+int Partition(int* arr, int first, int last, bool(*order)(int, int)) {
+	int mid = first + (last - first) / 2;
+
+	// Sort the first, mid and last elements to select a pivot in median-of-three pivot selection strategy
+	if (arr[first] > arr[mid])
+		Swap(arr[first], arr[mid]);
+	if (arr[mid] > arr[last])
+		Swap(arr[mid], arr[last]);
+	if (arr[first] > arr[mid])
+		Swap(arr[first], arr[mid]);
+
+	// Keep the pivot on the right to before partitioning
+	Swap(arr[mid], arr[last]);
+
+	// Partition [with another pivot selection strategy]
+	//int slowIndex = first;
+	//int fastIndex = first /*last - 2*/;
+	//while (fastIndex <= last - 1) {
+	//	if (order(arr[fastIndex], arr[last]))
+	//		Swap(arr[fastIndex], arr[slowIndex++]);
+	//	++fastIndex;
+	//}
+
+	// Partition
+	int leftIndex = first;
+	int rightIndex = last - 1;
+	while (true) {
+		while (order(arr[leftIndex], arr[last]))
+			++leftIndex;
+		while (order(arr[last], arr[rightIndex]))
+			--rightIndex;
+		if (leftIndex < rightIndex)
+			Swap(arr[leftIndex++], arr[rightIndex--]);
+		else
+			break;
+	}
+
+	// Return back the pivot and return its index
+	Swap(arr[last], arr[leftIndex]);
+	return leftIndex;
+}
+
+void QuickSort(int* arr, int first, int last, bool(*order)(int, int)) {
+	if (first >= last)
+		return;
+	int pivotIndex = Partition(arr, first, last, order);
+	QuickSort(arr, first, pivotIndex - 1, order);
+	QuickSort(arr, pivotIndex + 1, last, order);
 }

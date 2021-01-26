@@ -44,16 +44,26 @@ int* Merge(int* arr1, int length1, int* arr2, int length2, int &lengthOut);
 int* RemoveDuplicates(int* arr, int lengthIn, int &lengthOut); // two options are provided, to sort the array then remove the duplicated elements or to remove duplicates directly
 
 
-// ========================= Common Algorithms ========================= 
+// ========================= Sorting and Searching Algorithms ========================= 
 
 int BinarySearch(int* arr, int first, int last, int target);
 
+//	you can choose to sort in ascending order or descending order 
+//	by passing "ascending" or "descending" as a third parameter
+
 bool ascending(int x, int y);
 bool descending(int x, int y);
+
 void SelectionSort(int* arr, int length, bool(*order)(int, int));
-void BubbleSort(int* arr, int length, bool(*order)(int, int));	/*	you can choose to sort in ascending order or descending order
-																	by passing "ascending" or "descending" as a third parameter	*/
+
+void BubbleSort(int* arr, int length, bool(*order)(int, int));	
+
 void InsertionSort(int* arr, int length, bool(*order)(int, int));
+
+void ShellSort(int* arr, int length, bool(*order)(int, int));
 
 void Merge(int* arr, int first, int mid, int last, bool(*order)(int, int));
 void MergeSort(int* arr, int first, int last, bool(*order)(int, int));
+
+int Partition(int* arr, int first, int last, bool(*order)(int, int));
+void QuickSort(int* arr, int first, int last, bool(*order)(int, int));
