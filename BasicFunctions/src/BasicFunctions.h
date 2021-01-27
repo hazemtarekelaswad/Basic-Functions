@@ -67,3 +67,6 @@ void MergeSort(int* arr, int first, int last, bool(*order)(int, int));
 
 int Partition(int* arr, int first, int last, bool(*order)(int, int));
 void QuickSort(int* arr, int first, int last, bool(*order)(int, int));
+
+void Heapify(int* arr, int length, bool(*order)(int, int));
+void HeapSort(int* arr, int length, bool(*order)(int, int));

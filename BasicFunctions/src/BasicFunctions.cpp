@@ -459,3 +459,22 @@ void QuickSort(int* arr, int first, int last, bool(*order)(int, int)) {
 	QuickSort(arr, first, pivotIndex - 1, order);
 	QuickSort(arr, pivotIndex + 1, last, order);
 }
+
+void Heapify(int* arr, int length, bool(*order)(int, int)) {
+	for (int i = 0; i < length; ++i) {
+
+	// Reheap up algorithm
+		int newIndex = i;
+		while (newIndex && order(arr[(newIndex - 1) / 2], arr[newIndex])) {
+			Swap(arr[newIndex], arr[(newIndex - 1) / 2]);
+			newIndex = (newIndex - 1) / 2;
+		}
+	}
+}
+
+void HeapSort(int* arr, int length, bool(*order)(int, int)) {
+	for (int i = length - 1; i > 0; --i) {
+		Heapify(arr, i + 1, order);
+		Swap(arr[0], arr[i]);
+	}
+}
