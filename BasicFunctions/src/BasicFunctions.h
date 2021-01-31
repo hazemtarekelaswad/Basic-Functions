@@ -44,9 +44,14 @@ int* Merge(int* arr1, int length1, int* arr2, int length2, int &lengthOut);
 int* RemoveDuplicates(int* arr, int lengthIn, int &lengthOut); // two options are provided, to sort the array then remove the duplicated elements or to remove duplicates directly
 
 
-// ========================= Sorting and Searching Algorithms ========================= 
+// ========================= Searching Algorithms ========================= 
+int UnorderedSequentialSearch(int* arr, int length, int target);
+int SentinelSearch(int* arr, int length, int target);
 
-int BinarySearch(int* arr, int first, int last, int target);
+int OrderedSequentialSearch(int* arr, int length, int target);
+int BinarySearch(int* arr, int first, int last, int target);	// Gets the last duplicate of the target (from the right) unlike other searching alogs.
+
+// ========================= Sorting Algorithms ========================= 
 
 //	you can choose to sort in ascending order or descending order 
 //	by passing "ascending" or "descending" as a third parameter

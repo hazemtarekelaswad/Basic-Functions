@@ -287,7 +287,37 @@ int* RemoveDuplicates(int* arrIn, int lengthIn, int& lengthOut) {
 }
 
 
-// ========================= Sorting and Searching Algorithms ========================= 
+// ========================= Searching Algorithms ========================= 
+
+int UnorderedSequentialSearch(int* arr, int length, int target) {
+	for (int i = 0; i < length; ++i)
+		if (arr[i] == target)
+			return i;
+	return -1;
+}
+
+int SentinelSearch(int* arr, int length, int target) {
+	int lastItem = arr[length - 1];
+	arr[length - 1] = target;
+	int i = 0;
+	while (arr[i] != target)
+		++i;
+	arr[length - 1] = lastItem;
+	if (i < length - 1 || target == arr[length - 1])
+		return i;
+	return -1;
+}
+
+// Assuming that the arr is sorted in ascending order
+int OrderedSequentialSearch(int* arr, int length, int target) {
+	int i = 0;
+	while (i < length && arr[i] <= target) {
+		if (arr[i] == target)
+			return i;
+		++i;
+	}
+	return -1;
+}
 
 int BinarySearch(int* arr, int first, int last, int target) {
 	if (first > last)
@@ -304,6 +334,8 @@ int BinarySearch(int* arr, int first, int last, int target) {
 	else
 		BinarySearch(arr, mid + 1, last, target);
 }
+
+// ========================= Sorting Algorithms ========================= 
 
 bool ascending(int x, int y) {
 	return x < y;
