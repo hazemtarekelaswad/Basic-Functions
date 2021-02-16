@@ -362,10 +362,17 @@ void BubbleSort(int* arr, int length, bool(*order)(int, int)) {
 	if (length == 1 || length == 0)
 		return;
 
-	for (int i = 0; i < length - 1; ++i)
-		for (int j = 0; j < length - i - 1; ++j)
-			if (order(arr[j + 1], arr[j]))
+	for (int i = 0; i < length - 1; ++i) {
+		bool swapped = false;
+		for (int j = 0; j < length - i - 1; ++j) {
+			if (order(arr[j + 1], arr[j])) {
 				Swap(arr[j + 1], arr[j]);
+				swapped = true;
+			}
+		}
+		if (!swapped)
+			return;
+	}
 }
 
 void InsertionSort(int* arr, int length, bool(*order)(int, int)) {
@@ -456,15 +463,6 @@ int Partition(int* arr, int first, int last, bool(*order)(int, int)) {
 	// Keep the pivot on the right to before partitioning
 	Swap(arr[mid], arr[last]);
 
-	// Partition [with another pivot selection strategy]
-	//int slowIndex = first;
-	//int fastIndex = first /*last - 2*/;
-	//while (fastIndex <= last - 1) {
-	//	if (order(arr[fastIndex], arr[last]))
-	//		Swap(arr[fastIndex], arr[slowIndex++]);
-	//	++fastIndex;
-	//}
-
 	// Partition
 	int leftIndex = first;
 	int rightIndex = last - 1;
@@ -504,6 +502,7 @@ void Heapify(int* arr, int length, bool(*order)(int, int)) {
 	}
 }
 
+// Needs to be modified
 void HeapSort(int* arr, int length, bool(*order)(int, int)) {
 	for (int i = length - 1; i > 0; --i) {
 		Heapify(arr, i + 1, order);
