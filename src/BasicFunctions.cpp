@@ -443,7 +443,7 @@ void Merge(int* arr, int first, int mid, int last, bool(*order)(int, int)) {
 void MergeSort(int* arr, int first, int last, bool(*order)(int, int)) {
 	if (first == last)
 		return;
-	int mid = first + (last - first) / 2;
+	int mid = first + (last - first) / 2;		// (first + last) / 2
 	MergeSort(arr, first, mid, order);
 	MergeSort(arr, mid + 1, last, order);
 	Merge(arr, first, mid, last, order);
